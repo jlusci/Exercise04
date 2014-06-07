@@ -122,27 +122,33 @@ def custom_len(input_list):
 # For the next four functions, get clever using slice operations described in the first half
 def custom_append(input_list, value):
     """custom_append(input_list, value) imitates input_list.append(value)"""
-    list_length = custom_len(input_list)
-    value = input_list[list_length]
+#what the heck? I do not understand (value,)
+    input_list[custom_len(input_list):] = (value,)
     return input_list
 
 def custom_extend(input_list, values):
     """custom_extend(input_list, values) imitates input_list.extend(values)"""
-    pass
+    input_list[custom_len(input_list):] = values
+    return input_list
 
 def custom_insert(input_list, index, value):
     """custom_insert(input_list, index, value) imitates
     input_list.insert(index, value)
     """
-    pass
+    input_list[index:index] = [value]
+    return input_list
 
 def custom_remove(input_list, value):
     """custom_remove(input_list, value) imitates input_list.remove(value)"""
-    pass
+    temp_index = input_list.index(value)
+    del input_list[temp_index]
+    return input_list
 
 def custom_pop(input_list):
     """custom_pop(input_list) imitates input_list.pop()"""
-    pass
+    last_popped = input_list[-1]
+    del input_list[-1]
+    return last_popped
 
 def custom_index(input_list, value):
     """custom_index(input_list, value) imitates input_list.index(value)"""
