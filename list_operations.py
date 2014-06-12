@@ -123,7 +123,8 @@ def custom_len(input_list):
 def custom_append(input_list, value):
     """custom_append(input_list, value) imitates input_list.append(value)"""
 #what the heck? I do not understand (value,)
-    input_list[custom_len(input_list):] = (value,)
+    #input_list[custom_len(input_list):] = (value,)
+    input_list[custom_len(input_list):] =[value]
     return input_list
 
 def custom_extend(input_list, values):
@@ -152,22 +153,43 @@ def custom_pop(input_list):
 
 def custom_index(input_list, value):
     """custom_index(input_list, value) imitates input_list.index(value)"""
-    pass
+    for index in range(custom_len(input_list)):
+        if input_list[index] == value:
+            return index
 
 def custom_count(input_list, value):
     """custom_count(input_list, value) imitates input_list.count(value)"""
-    pass
+    count = 0
+    for index in range(custom_len(input_list)):
+        if input_list[index] == value:
+            count += 1
+    return count
 
 def custom_reverse(input_list):
     """custom_reverse(input_list) imitates input_list.reverse()"""
-    pass
+    index_max = custom_len(input_list) - 1
+    index = 0
+    for index in range(index_max):
+        if index < index_max - index:
+            temp = input_list[index]
+            input_list[index] = input_list[index_max-index]
+            input_list[index_max-index] = temp
+            index += 1
+    return input_list
+    # a = input_list[::-1]
+    # input_list = a
+    # return input_list
+
 
 def custom_contains(input_list, value):
     """custom_contains(input_list, value) imitates (value in input_list)"""
-    pass
+    for index in range(custom_len(input_list)):
+        if input_list[index] == value:
+            return input_list[index]
 
 def custom_equality(some_list, another_list):
     """custom_equality(some_list, another_list) imitates
     (some_list == another_list)
     """
-    pass
+    if some_list == another_list:
+        return some_list
